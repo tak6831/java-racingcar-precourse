@@ -8,10 +8,10 @@ import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 public class RaceGame {
     private static final int MOVING_FORWARD = 4;
-    private static final int STOP = 3;
     private static final String ERROR_MESSAGE = "[ERROR]";
     public static final int MIN_NUM = 1;
     public static final int MAX_NUM = 9;
+    public static final int STOP = 3;
 
     public String inputCarName(){
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
@@ -20,7 +20,7 @@ public class RaceGame {
     public String[] inputArray(String inputString){
         return inputString.split(",");
     }
-    public void throwErrorMessage(String message) throws IllegalArgumentException{
+    public static void throwErrorMessage(String message) throws IllegalArgumentException{
         throw new IllegalArgumentException(ERROR_MESSAGE+message);
     }
 

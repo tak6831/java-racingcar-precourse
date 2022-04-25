@@ -15,7 +15,6 @@ public class RaceGameTest extends NsTest {
     public static final String TEST_STRING = "10d";
     public static final String ERROR_MESSAGE = "[ERROR]";
     RaceGame raceGame;
-
     @BeforeEach
     void setUp(){
         this.raceGame = new RaceGame();
