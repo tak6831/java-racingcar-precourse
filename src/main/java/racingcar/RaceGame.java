@@ -4,15 +4,18 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
 
+import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
+
 public class RaceGame {
     private static final int MOVING_FORWARD = 4;
     private static final int STOP = 3;
     private static final String ERROR_MESSAGE = "[ERROR]";
+    public static final int MIN_NUM = 1;
+    public static final int MAX_NUM = 9;
 
     public String inputCarName(){
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        String inputString = Console.readLine();
-        return inputString;
+        return Console.readLine();
     }
     public String[] inputArray(String inputString){
         return inputString.split(",");
@@ -37,5 +40,18 @@ public class RaceGame {
         return !Pattern.matches("^[,a-zA-Z]*$", inputString)
                 || inputString.startsWith(",")
                 || inputString.endsWith(",");
+    }
+
+    public int inputRandomNumber() {
+        return pickNumberInRange(MIN_NUM, MAX_NUM);
+    }
+
+    public int inputGameCount() {
+        try{
+            return Integer.parseInt(Console.readLine());
+        }catch(Exception e){
+            throwErrorMessage("숫자가 아닙니다.");
+            return inputGameCount();
+        }
     }
 }

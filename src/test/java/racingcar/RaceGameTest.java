@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RaceGameTest extends NsTest {
 
-    public static final String TEST_STRING = "K3,K5";
+    public static final String TEST_STRING = "10d";
     public static final String ERROR_MESSAGE = "[ERROR]";
     RaceGame raceGame;
 
@@ -50,6 +50,20 @@ public class RaceGameTest extends NsTest {
     void 입력된차_출력(){
         assertThat(raceGame.inputArray("bb,dd,ee"))
                 .isNotEmpty();
+    }
+    @Test
+    void 랜덤값테스트(){
+        assertThat(raceGame.inputRandomNumber())
+                .isGreaterThan(0)
+                .isLessThan(10)
+                .isNotEqualTo(0)
+                .isNotEqualTo(10);
+    }
+    @Test
+    void 실행횟수_입력값체크(){
+        assertThatThrownBy(()->{
+            raceGame.inputGameCount();
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override
