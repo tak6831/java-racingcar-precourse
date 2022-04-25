@@ -27,7 +27,8 @@ public class Car {
     public Car(String carName, int gameCount) {
         this.carName = carName;
         this.gameCount = gameCount;
-        this.result = resultString(gameCount);
+//        this.result = resultString(gameCount);
+        this.result = "";
     }
 
     private String resultString(int gameCount) {

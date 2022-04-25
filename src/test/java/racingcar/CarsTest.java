@@ -14,7 +14,7 @@ class CarsTest {
     @BeforeEach
     void setUp() {
         cars = new Cars();
-        cars.addCar(new String[]{"K3","K5"},5);
+        cars.addCar(new String[]{"K3","K4","K5","K6","K8","K7"},5);
     }
 
     @Test
@@ -22,10 +22,14 @@ class CarsTest {
         assertThat(cars.carList).isInstanceOf(List.class);
     };
     @Test
-    void 우승자가져오기(){
-        assertThat(cars.getWinner())
+    void 게임시작하기(){
+        assertThat(cars.startGame())
                 .isInstanceOf(String.class)
-                .isEmpty();
+                .isNotEmpty();
     }
-
+    @Test
+    void 우승자_가져오기(){
+        assertThat(cars.getWinner())
+                .contains("최종 우승자:");
+    }
 }

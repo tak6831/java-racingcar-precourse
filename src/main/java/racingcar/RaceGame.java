@@ -14,26 +14,36 @@ public class RaceGame {
     public static final int STOP = 3;
 
     public String inputCarName(){
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        return Console.readLine();
+        try{
+            System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+            String temp = Console.readLine();
+            splitValidation(temp);
+            for(String item : inputArray(temp)){
+                lengthValidation(item);
+            }
+            return temp;
+        }catch(IllegalArgumentException e){
+            System.out.println(throwErrorMessage(e.getMessage()));
+            return inputCarName();
+        }
     }
     public String[] inputArray(String inputString){
         return inputString.split(",");
     }
-    public static void throwErrorMessage(String message) throws IllegalArgumentException{
-        throw new IllegalArgumentException(ERROR_MESSAGE+message);
+    public String throwErrorMessage(String message){
+        return ERROR_MESSAGE+message;
     }
 
-    public void lengthValidation(String inputString ) {
-        if(lengthCondition(inputString)) throwErrorMessage("자동차 이름을 5자를 넘지않게 해주세요.");
+    public void lengthValidation(String inputString ) throws IllegalArgumentException{
+        if(lengthCondition(inputString)) throw new IllegalArgumentException("자동차 이름을 5자를 넘지않게 해주세요.");
     }
 
     private boolean lengthCondition(String inputString) {
         return inputString.length() > 5;
     }
 
-    public void splitValidation(String inputString) {
-        if(stringCondition(inputString)) throwErrorMessage("입력 형식이 맞지 않습니다.");
+    public void splitValidation(String inputString) throws IllegalArgumentException{
+        if(stringCondition(inputString)) throw new IllegalArgumentException ("입력 형식이 맞지 않습니다.");
     }
 
     private boolean stringCondition(String inputString) {
@@ -47,6 +57,7 @@ public class RaceGame {
     }
 
     public int inputGameCount() {
+        System.out.println("시도할 횟수는 몇회인가요?");
         try{
             return Integer.parseInt(Console.readLine());
         }catch(Exception e){
